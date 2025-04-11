@@ -28,9 +28,13 @@ def extract_features(audio_path):
     data, sr = librosa.load(audio_path, sr=16000, mono=True)
     features = []
 
+    # Para fazer essa parte apenas peguei o código feito no notebook de feature-extraction-and-modelling
+    # substituindo as variáveis
+    
     # Zero Crossing Rate
     # Extract the zcr here
     # features.extend(zcr)
+
     zcr = np.mean(librosa.feature.zero_crossing_rate(y=data,),axis=1) #way for measuring smoothness of a signal is to calculate the number of zero-crossing within a segment of that signal.
     features = np.hstack((features, zcr))
     
@@ -121,7 +125,7 @@ if uploaded_file is not None:
     # Code here
     cores = plt.cm.tab20(np.linspace(0, 1, len(predictions)))
     classes = EMOTIONS
-    plt.style.use('dark_background')
+    plt.style.use('dark_background') # achei que o fundo branco ficava muito destoante da cor do site por isso utilizei essa função
     fig, ax = plt.subplots()
     ax.bar(classes,predictions[0],color=cores)
     st.pyplot(fig)
